@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Login/Register</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/loginregister.css') }}">
+        <script src="{{ url_for('static', filename='js/loginregister.js') }}"></script>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <img src="{{ url_for('static', filename='assets/templogo.png') }}" alt="logo">
+            <div class="form-container">
+                <div class="login">
+                    <h1>Login</h1>
+                    <form action="/login" method="post">
+                        <input type="text" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit" name="login-submit">Login</button>
+                    </form>
+                </div>
+                <div class="register">
+                    <h1>Register</h1>
+                    <form action="/register" method="post">
+                        <input type="text" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="password" name="password-repeat" placeholder="Repeat Password" required>
+                        <button type="submit" name="register-submit">Register</button>
+                    </form>
+                </div>
+            </div>
+            <button class="google-login">Login with Google</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Quizaroo. All rights reserved.</p>
+            <a href="https://github.com/MdTanjeemHaider/Quizaroo">Github</a>
+        </footer>
+    </body>
+</html>

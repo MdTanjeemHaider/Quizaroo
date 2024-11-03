@@ -1,0 +1,17 @@
+/* main.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define Color pallete */
+:root {
+    --background: #16161a;
+    --secondary: #72757e;
+    --highlight: #7f5af0;
+    --text: #fffffe;
+    --secondary-text: #94a1b2;
+    --tertiary: #2cb67d;
+}
