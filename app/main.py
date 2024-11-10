@@ -1,6 +1,9 @@
 from flask import Flask, redirect, request, jsonify, render_template, session, url_for
+import firebase_admin
+from firebase_admin import credentials, firestore
 import pyrebase
 import os
+import json
 from dotenv import load_dotenv
 
 # Load the environment variables
@@ -10,7 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
-# Initialize the firebase app
+# Initialize the firebase authentication app
 config = {
   "apiKey": os.getenv("FIREBASE_API_KEY"),
   "authDomain": os.getenv("FIREBASE_AUTH_DOMAIN"),
@@ -19,10 +22,14 @@ config = {
   "messagingSenderId": os.getenv("FIREBASE_MESSAGING_SENDER_ID"),
   "appId": os.getenv("FIREBASE_APP_ID"),
   "measurementId": os.getenv("FIREBASE_MEASUREMENT_ID"),
-  "databaseURL": ""
+  "databaseURL": ''
 }
-firebase = pyrebase.initialize_app(config)
-auth = firebase.auth()
+auth = pyrebase.initialize_app(config).auth()
+
+# Initialize the Firestore database
+cred = credentials.Certificate(json.loads(os.getenv("FIRESTORE_DATABASE_CONFIG")))
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 @app.route('/')
 def home():
